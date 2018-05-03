@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-alpine
+FROM php:fpm-alpine
 
 # change apk update resource to CN mirror
 COPY ./repositories /etc/apk/repositories
