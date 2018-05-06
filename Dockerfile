@@ -17,6 +17,6 @@ RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev lib
    docker-php-ext-install pdo_mysql && \
    apk add --update autoconf alpine-sdk libpq openssl-dev && \
    yes | pecl install swoole && \
-   apk del --no-cache openssl-dev alpine-sdk
+   apk del --no-cache alpine-sdk
 
 COPY ./swoole.ini /usr/local/etc/php/conf.d/swoole.ini
