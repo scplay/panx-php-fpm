@@ -1,6 +1,6 @@
 FROM php:fpm-alpine
 
-RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev && \
+RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev zlib-dev && \
     # config gd
     docker-php-ext-configure gd \
      --with-gd \
@@ -14,9 +14,11 @@ RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev lib
     # wtf ?
     apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev && \
     # install pdo
-   docker-php-ext-install pdo_mysql && \
-   apk add --update autoconf alpine-sdk libpq openssl-dev && \
-   yes | pecl install swoole && \
-   apk del --no-cache openssl-dev alpine-sdk
+    docker-php-ext-install pdo_mysql && \
+    apk add --update autoconf alpine-sdk libpq openssl-dev && \
+    yes | pecl install swoole && \
+    apk del --no-cache openssl-dev alpine-sdk && \
+    # install zip for excel export 
+    docker-php-ext-install zip 
 
 COPY ./swoole.ini /usr/local/etc/php/conf.d/swoole.ini
