@@ -6,7 +6,7 @@ COPY ./repositories /etc/apk/repositories
 # set php post file size
 COPY ./upload.ini /usr/local/etc/php/conf.d/upload.ini
 
-RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev && \
+RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev zlib-dev && \
     # config gd
     docker-php-ext-configure gd \
      --with-gd \
@@ -20,4 +20,6 @@ RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev lib
     # wtf ?
     apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev && \
     # install pdo
-    docker-php-ext-install pdo_mysql
+    docker-php-ext-install pdo_mysql && \
+    # install zip for excel export 
+    docker-php-ext-install zip 
