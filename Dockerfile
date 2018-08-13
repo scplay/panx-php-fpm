@@ -15,7 +15,7 @@ RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev lib
     apk del --no-cache freetype-dev libpng-dev libjpeg-turbo-dev && \
     # install pdo
     docker-php-ext-install pdo_mysql && \
-    apk add --update autoconf alpine-sdk libpq openssl-dev && \
+    apk add --update autoconf alpine-sdk libpq openssl-dev libssl1.0 libstdc++ && \
     yes | pecl install swoole && \
     apk del --no-cache openssl-dev alpine-sdk && \
     # install zip for excel export 
