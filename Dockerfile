@@ -19,6 +19,8 @@ RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev lib
     yes | pecl install swoole && \
     apk del --no-cache openssl-dev alpine-sdk && \
     # install zip for excel export 
-    docker-php-ext-install zip 
+    docker-php-ext-install zip && \
+    # install bcmath for  Arbitrary Precision Mathematics
+    docker-php-ext-install bcmath 
 
 COPY ./swoole.ini /usr/local/etc/php/conf.d/swoole.ini
